@@ -7,8 +7,9 @@ function buildStyles() {
   //take the source sass file, use relative path
   return (
     // src("index.scss")
-    //for all .scss files:
-    src("*.scss")
+    //for all .scss files use *
+    // ** means look into any subfolder
+    src("sass/**/*.scss")
       //use sass func that was prev imported
       //use pipe method, passing sass() to compile the sass file
       .pipe(sass())
@@ -23,7 +24,7 @@ function watchTask() {
   //invoke watch() & argument will be array of file(s) to watch
   //use * for all .scss files
   //2nd argument: func to run when these files change
-  watch(["*.scss"], buildStyles);
+  watch(["sass/**/*.scss"], buildStyles);
 }
 
 //export & run in order the series of functions

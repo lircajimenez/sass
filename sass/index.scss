@@ -1,0 +1,14 @@
+//order of import DOES MATTER
+//if a file depends on value in another file, first file has to be below the latter file
+
+//variables & functions
+@import "variables";
+
+//base & layout
+@import "base";
+
+//colors
+
+//components (button, card, navbar)
+
+//utilities (matgin, padding, opacity)
