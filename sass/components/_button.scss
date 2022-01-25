@@ -33,4 +33,14 @@
       background-color: $val;
     }
   }
+
+  .btn-complement-#{$key} {
+    @include btn($val);
+    //personalized function
+    color: light-comp($val);
+    &:hover {
+      color: $val;
+      background-color: light-comp($val);
+    }
+  }
 }
