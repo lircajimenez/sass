@@ -1,5 +1,6 @@
 const { src, dest, watch, series } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
+const purgecss = require("gulp-purgecss");
 
 //function that compiles sass into css
 //take the src sass file, then compile it into css file & pipe it to destination folder
@@ -13,6 +14,8 @@ function buildStyles() {
       //use sass func that was prev imported
       //use pipe method, passing sass() to compile the sass file
       .pipe(sass())
+      //argument: files to look that are using the classes
+      .pipe(purgecss({ content: ["*.html"] }))
       //pass dest() to ouput the compiled css file into destination folder
       .pipe(dest("css"))
   );
@@ -24,7 +27,7 @@ function watchTask() {
   //invoke watch() & argument will be array of file(s) to watch
   //use * for all .scss files
   //2nd argument: func to run when these files change
-  watch(["sass/**/*.scss"], buildStyles);
+  watch(["sass/**/*.scss", "*.html"], buildStyles);
 }
 
 //export & run in order the series of functions
