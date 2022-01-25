@@ -1,0 +1,36 @@
+//group together same properties & reuse them in other classes
+//it can also take arguments when has same property but different values
+//when there's no value passed, you can set a default value
+@mixin btn($bg-color: #e2e2e2) {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  border: 0;
+  padding: $base-padding $base-padding * 2;
+  border-radius: $base-border-radius;
+  background-color: $bg-color;
+}
+
+//generic button
+.btn {
+  @include btn;
+}
+
+@each $key, $val in $colors {
+  .btn-#{$key} {
+    @include btn($val);
+    &:hover {
+      //lighten($color: #000000, $amount: 0)
+      background-color: lighten($val, 5);
+    }
+  }
+
+  .btn-outlined-#{$key} {
+    @include btn(#fff);
+    // background-color: #fff;
+    border: $base-border-thickness solid $val;
+    &:hover {
+      background-color: $val;
+    }
+  }
+}
